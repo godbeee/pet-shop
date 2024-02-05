@@ -1,0 +1,21 @@
+/* .form {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 1rem;
+  gap: 1rem;
+}
+.form-control {
+  margin-bottom: 1rem;
+}
+.form-control label {
+  width: 100%;
+}
+
+.form .address {
+  grid-column: 1/-1;
+}
+
+.form-control input {
+  width: 100%;
+} */

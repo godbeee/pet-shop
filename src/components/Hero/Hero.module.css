@@ -1,0 +1,7 @@
+.video-widget {
+  background-color: azure;
+}
+.video-widget video {
+  width: 100%;
+  height: auto;
+}

@@ -1,0 +1,60 @@
+.branch {
+  padding-top: var(--bs-navbar-brand-padding-y);
+  padding-bottom: var(--bs-navbar-brand-padding-y);
+  margin-right: var(--bs-navbar-brand-margin-end);
+  font-size: var(--bs-navbar-brand-font-size);
+  color: var(--bs-navbar-brand-color);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn {
+  padding: 0.4rem 1rem;
+  margin-right: 1rem;
+  background-color: transparent;
+  border-radius: 5px;
+}
+.btn:hover,
+.btn:active {
+  background-color: #000;
+  color: #fff;
+}
+.btn:last-of-type {
+  background-color: #000;
+  color: #fff;
+}
+.btn:last-of-type:hover,
+.btn:last-of-type:active {
+  background-color: transparent;
+  color: #000;
+}
+.cart {
+  margin-right: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+}
+.cart span {
+  font-size: 1.2rem;
+  text-transform: capitalize;
+}
+.icon {
+  font-size: 1.6rem;
+}
+.amount {
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translateX(70%);
+  color: #d04848;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 0 5px;
+  height: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sub-link:hover {
+  border-bottom: 1px solid #d04848;
+}

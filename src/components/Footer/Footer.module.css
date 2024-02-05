@@ -1,0 +1,18 @@
+.container {
+  background-color: #e5e1da;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+.container p {
+  margin-bottom: 0;
+}
+.social-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+.icon {
+  font-size: 1.8rem;
+}
