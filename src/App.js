@@ -4,8 +4,14 @@ import PetsPage from "./pages/PetsPage/PetsPage";
 import BlogPage from "./pages/BlogPage/BlogPage";
 import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
+import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import CartPage from "./pages/CartPage/CartPage";
 import CheckoutPage from "./pages/CheckoutPage/CheckoutPage";
+import OrderPage from "./pages/OrderPage/OrderPage";
+import Protect from "./components/Protect/Protect";
+import DashBoard from "./admin/Dashboard/Dashboard";
+import Pets from "./admin/pages/pets/Pets";
+
 import "./App.css";
 
 function App() {
@@ -17,8 +23,20 @@ function App() {
           <Route path="pets" element={<PetsPage />}></Route>
           <Route path="blog" element={<BlogPage />}></Route>
           <Route path="login" element={<LoginPage />}></Route>
+          <Route path="register" element={<RegisterPage />}></Route>
           <Route path="cart" element={<CartPage />}></Route>
           <Route path="checkout" element={<CheckoutPage />}></Route>
+          <Route
+            path="order"
+            element={
+              <Protect>
+                <OrderPage />
+              </Protect>
+            }
+          ></Route>
+        </Route>
+        <Route path="/admin" element={<DashBoard />}>
+          <Route path="pets" element={<Pets />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>

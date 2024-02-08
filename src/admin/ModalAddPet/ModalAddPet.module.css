@@ -1,0 +1,42 @@
+.img-choose {
+  display: inline-block;
+  align-items: center;
+  gap: 1rem;
+  background-color: #bed1cf;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+}
+.upload {
+  background-color: orange;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-transform: capitalize;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  color: #fff !important;
+  cursor: pointer;
+  width: fit-content;
+}
+.avatar {
+  height: 138px;
+  width: 207px;
+  position: relative;
+}
+.avatar img {
+  max-width: 100%;
+  max-height: 100%;
+}
+.x {
+  position: absolute;
+  color: red;
+  right: 0;
+  top: 0;
+  font-size: 2rem;
+  transform: translate(50%, -50%);
+  cursor: pointer;
+}
+.title {
+  text-transform: capitalize;
+  color: #80bcbd;
+}

@@ -2,16 +2,28 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { FaShoppingCart } from "react-icons/fa";
+import { FaFile } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa6";
 import logo from "../../assets/logo.png";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import classes from "./Header.module.css";
+import { useSelector, useDispatch } from "react-redux";
+import { userAction } from "../../store/slices/userSlice";
 
 function Header() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state.user.data);
+  console.log(state);
 
   function handleNavigate(path) {
     navigate(path);
+  }
+
+  function handleLogout(e) {
+    e.preventDefault();
+    dispatch(userAction.onLogout());
   }
   return (
     <>
@@ -38,23 +50,33 @@ function Header() {
                 <FaShoppingCart className={classes.icon} /> <span>cart</span>
                 <span className={classes.amount}>0</span>
               </NavLink>
-              <button
-                onClick={() => handleNavigate("/login")}
-                className={classes.btn}
-              >
-                login
-              </button>
-              <button
-                onClick={() => handleNavigate("/register")}
-                className={classes.btn}
-              >
-                register
-              </button>
-              {/* <NavDropdown title="user" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">profile</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">logout</NavDropdown.Item>
-              </NavDropdown> */}
+              {!state.isAuth && (
+                <>
+                  <button
+                    onClick={() => handleNavigate("/login")}
+                    className={classes.btn}
+                  >
+                    login
+                  </button>
+                  <button
+                    onClick={() => handleNavigate("/register")}
+                    className={classes.btn}
+                  >
+                    register
+                  </button>
+                </>
+              )}
+              {state.isAuth && (
+                <NavDropdown title={state.fullname} id="basic-nav-dropdown">
+                  <Link className="dropdown-item" to="/order">
+                    <FaFile /> orders
+                  </Link>
+                  <NavDropdown.Divider />
+                  <Link onClick={handleLogout} className="dropdown-item" to="/">
+                    <FaArrowRight /> logout
+                  </Link>
+                </NavDropdown>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>

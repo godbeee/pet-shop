@@ -1,23 +1,20 @@
-import { Link, useNavigate, useLocation } from "react-router-dom";
-import classes from "./LoginPage.module.css";
+import { Link, useNavigate } from "react-router-dom";
+import classes from "./RegisterPage.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import { baseURL } from "../../config/config";
-import { useDispatch } from "react-redux";
-import { userAction } from "../../store/slices/userSlice";
 
-function LoginPage() {
+function RegisterPage() {
   const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from || "/";
-  const dispatch = useDispatch();
 
   async function handleSubmit(e) {
     e.preventDefault();
     const obj = {
+      fullname: e.target.elements.fullname.value,
       email: e.target.elements.email.value,
       password: e.target.elements.password.value,
+      phone: e.target.elements.phone.value,
     };
-    const res = await fetch(`${baseURL}/login`, {
+    const res = await fetch(`${baseURL}/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -25,16 +22,14 @@ function LoginPage() {
       body: JSON.stringify(obj),
     });
     const data = await res.json();
-    console.log(data);
     if (data.errors.length) {
       notify(data.errors[0].msg, true);
       return;
     }
-    dispatch(userAction.onLogin(data.user));
     e.target.reset();
-    notify("login user success!");
+    notify("create user success!");
     return setTimeout(() => {
-      navigate(from, { replace: true });
+      navigate("/login");
     }, 1500);
   }
   function notify(msg, isError) {
@@ -63,24 +58,26 @@ function LoginPage() {
     <>
       <div className={classes.container}>
         <form onSubmit={handleSubmit} className={classes.form}>
-          <h2>Login</h2>
+          <h2>Sign up</h2>
           <div className={classes["form-control"]}>
-            <label>email</label>
+            <label>fullname:</label>
+            <input name="fullname" />
+          </div>
+          <div className={classes["form-control"]}>
+            <label>email:</label>
             <input type="email" name="email" />
           </div>
           <div className={classes["form-control"]}>
-            <label>password</label>
+            <label>password:</label>
             <input type="password" name="password" />
           </div>
           <div className={classes["form-control"]}>
-            <button className="btn btn-secondary">login</button>
+            <label>phone:</label>
+            <input type="tel" name="phone" />
           </div>
-          <div>
-            <Link>forget password</Link>
-            <Link>register.</Link>
+          <div className={classes["form-control"]}>
+            <button className="btn btn-secondary">register</button>
           </div>
-          <hr></hr>
-          <p style={{ textAlign: "center" }}>or login with</p>
         </form>
       </div>
       <ToastContainer />
@@ -88,4 +85,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default RegisterPage;
