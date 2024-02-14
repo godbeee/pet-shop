@@ -11,6 +11,7 @@ import OrderPage from "./pages/OrderPage/OrderPage";
 import Protect from "./components/Protect/Protect";
 import DashBoard from "./admin/Dashboard/Dashboard";
 import Pets from "./admin/pages/pets/Pets";
+import { ToastContainer } from "react-toastify";
 
 import "./App.css";
 
@@ -39,6 +40,7 @@ function App() {
           <Route path="pets" element={<Pets />}></Route>
         </Route>
       </Routes>
+      <ToastContainer />
     </BrowserRouter>
   );
 }

@@ -1,19 +1,24 @@
 import Modal from "react-bootstrap/Modal";
 import { FaCirclePlus } from "react-icons/fa6";
 import { TiDelete } from "react-icons/ti";
-import classes from "./ModalAddPet.module.css";
+import classes from "./ModalUpdatePet.module.css";
 import Resizer from "react-image-file-resizer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Spin from "../../components/UI/Spinner";
 import { breedList } from "../../data/breed";
 import { baseURL } from "../../config/config";
 import { toast } from "react-toastify";
 
-function ModalAddPet({ show, handleClose, fetchPets }) {
-  const [imageUpload, setImageUpload] = useState(null);
+function ModalUpdatePet({ show, handleClose, fetchPets, pet, setPet }) {
+  const [imageUpload, setImageUpload] = useState("");
   const [isLoadingImg, setIsLoadingImg] = useState(false);
-  const [selectedType, setSelectedType] = useState("dog");
-  const breeds = breedList.find((item) => item.type === selectedType).breeds;
+  let breeds = [];
+  if (pet?.type) {
+    breeds = breedList.find((item) => item.type === pet.type).breeds;
+  }
+  useEffect(() => {
+    setImageUpload(pet?.avatar);
+  }, [pet?.avatar]);
 
   function notify(msg, isError) {
     if (isError) {
@@ -37,8 +42,11 @@ function ModalAddPet({ show, handleClose, fetchPets }) {
       progress: undefined,
     });
   }
-  function handleChangeSelectType(e) {
-    setSelectedType(e.target.value);
+  function handleChange(e) {
+    setPet({
+      ...pet,
+      [e.target.name]: e.target.value,
+    });
   }
   async function handleUploadAndResizeImage(e) {
     const file = e.target.files[0];
@@ -52,13 +60,13 @@ function ModalAddPet({ show, handleClose, fetchPets }) {
         0,
         async (uri) => {
           setIsLoadingImg(true);
-          const api = `${process.env.REACT_APP_BASE_URL}/uploadimage`;
+          const api = `${baseURL}/uploadimage`;
           const res = await fetch(api, {
             method: "POST",
             headers: {
               "content-type": "application/json",
             },
-            body: JSON.stringify({ image: uri }),
+            body: JSON.stringify({ image: uri, id: pet?._id }),
           });
           const data = await res.json();
           console.log(data);
@@ -70,7 +78,7 @@ function ModalAddPet({ show, handleClose, fetchPets }) {
     }
   }
   async function handleRemove(e, id) {
-    const api = `${process.env.REACT_APP_BASE_URL}/removeimage`;
+    const api = `${baseURL}/removeimage`;
     try {
       setIsLoadingImg(true);
       const res = await fetch(api, {
@@ -78,7 +86,7 @@ function ModalAddPet({ show, handleClose, fetchPets }) {
         headers: {
           "content-type": "application/json",
         },
-        body: JSON.stringify({ public_id: id }),
+        body: JSON.stringify({ public_id: id, id: pet?._id }),
       });
       await res.json();
       setIsLoadingImg(false);
@@ -88,20 +96,20 @@ function ModalAddPet({ show, handleClose, fetchPets }) {
       setIsLoadingImg(false);
     }
   }
-  async function handleSubmitAddPet(e) {
+  async function handleSubmitUpdatePet(e) {
     e.preventDefault();
     const form = e.target.elements;
     const obj = {
       avatar: imageUpload,
       name: form.name.value,
       sex: form.sex.value,
-      type: selectedType,
+      type: pet?.type,
       breed: form.breed.value,
       weight: form.weight.value,
       age: form.age.value,
       desc: form.desc.value,
     };
-    const res = await fetch(`${baseURL}/pets`, {
+    const res = await fetch(`${baseURL}/pets/${pet?._id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -113,11 +121,10 @@ function ModalAddPet({ show, handleClose, fetchPets }) {
       notify(data.errors[0].msg, true);
       return;
     }
+    setPet(data.pet);
     fetchPets();
-    e.target.reset();
-    setImageUpload(null);
     handleClose();
-    notify("create pet success!");
+    notify("update pet success!");
   }
   return (
     <>
@@ -130,15 +137,15 @@ function ModalAddPet({ show, handleClose, fetchPets }) {
           keyboard={false}
         >
           <Modal.Header closeButton>
-            <Modal.Title className={classes.title}>add pet</Modal.Title>
+            <Modal.Title className={classes.title}>update pet</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <form onSubmit={handleSubmitAddPet} className="row g-3">
+            <form onSubmit={handleSubmitUpdatePet} className="row g-3">
               <div className="col-12">
                 <div className={classes.avatar}>
                   {imageUpload && (
                     <>
-                      <img src={imageUpload.url} alt="avatar" />
+                      <img src={imageUpload.url} alt=""></img>
                       <TiDelete
                         onClick={(e) => handleRemove(e, imageUpload.public_id)}
                         className={classes.x}
@@ -146,7 +153,7 @@ function ModalAddPet({ show, handleClose, fetchPets }) {
                     </>
                   )}
                   {!imageUpload && (
-                    <img src="https://placehold.co/207x138" alt="avatar" />
+                    <img src="https://placehold.co/207x138" alt=""></img>
                   )}
                 </div>
               </div>
@@ -165,11 +172,21 @@ function ModalAddPet({ show, handleClose, fetchPets }) {
               </div>
               <div className="col-md-6">
                 <label className="form-label">Name</label>
-                <input className="form-control" name="name" />
+                <input
+                  className="form-control"
+                  name="name"
+                  value={pet?.name}
+                  onChange={handleChange}
+                />
               </div>
               <div className="col-md-6">
                 <label className="form-label">Sex</label>
-                <select name="sex" className="form-control">
+                <select
+                  value={pet?.sex}
+                  onChange={handleChange}
+                  name="sex"
+                  className="form-control"
+                >
                   <option value={true}>Male</option>
                   <option value={false}>FeMale</option>
                 </select>
@@ -177,9 +194,10 @@ function ModalAddPet({ show, handleClose, fetchPets }) {
               <div className="col-md-6">
                 <label className="form-label">Type</label>
                 <select
-                  onChange={handleChangeSelectType}
+                  onChange={handleChange}
                   className="form-control"
                   name="type"
+                  value={pet?.type}
                 >
                   <option value={"dog"}>dog</option>
                   <option value={"cat"}>cat</option>
@@ -188,7 +206,12 @@ function ModalAddPet({ show, handleClose, fetchPets }) {
               </div>
               <div className="col-md-6">
                 <label className="form-label">breed</label>
-                <select name="breed" className="form-control">
+                <select
+                  value={pet?.breed}
+                  onChange={handleChange}
+                  name="breed"
+                  className="form-control"
+                >
                   {breeds.map((breed, i) => (
                     <option key={i} value={breed}>
                       {breed}
@@ -198,11 +221,22 @@ function ModalAddPet({ show, handleClose, fetchPets }) {
               </div>
               <div className="col-md-6">
                 <label className="form-label">weight</label>
-                <input className="form-control" name="weight" />
+                <input
+                  className="form-control"
+                  name="weight"
+                  value={pet?.weight}
+                  onChange={handleChange}
+                />
               </div>
               <div className="col-md-6">
                 <label className="form-label">age</label>
-                <input type="number" className="form-control" name="age" />
+                <input
+                  type="number"
+                  className="form-control"
+                  name="age"
+                  value={pet?.age}
+                  onChange={handleChange}
+                />
               </div>
               <div className="col-12">
                 <label className="form-label">description</label>
@@ -210,10 +244,12 @@ function ModalAddPet({ show, handleClose, fetchPets }) {
                   name="desc"
                   className="form-control"
                   placeholder="description"
+                  value={pet?.desc}
+                  onChange={handleChange}
                 />
               </div>
               <div className="col-12 mt-3 d-flex justify-content-end">
-                <button className="btn btn-success">add pet</button>
+                <button className="btn btn-success">update pet</button>
               </div>
             </form>
           </Modal.Body>
@@ -223,4 +259,4 @@ function ModalAddPet({ show, handleClose, fetchPets }) {
   );
 }
 
-export default ModalAddPet;
+export default ModalUpdatePet;
