@@ -3,11 +3,13 @@ import Card from "../../../components/UI/Card";
 import ModalAddPet from "../../ModalAddPet/ModalAddPet";
 import ModalUpdatePet from "../../ModalUpdatePet/ModalUpdatePet";
 import PetTable from "../../PetTable/PetTable";
-
-import { baseURL } from "../../../config/config";
+import ReactPaginate from "react-paginate";
+import { baseURL, pageSize } from "../../../config/config";
+import { debounce } from "../../../utils/ultils";
 import { useEffect, useState } from "react";
 
 function Pets() {
+  //pets
   const [pets, setPets] = useState([]);
   const [petId, setPetId] = useState(null);
   const [pet, setPet] = useState(null);
@@ -20,10 +22,27 @@ function Pets() {
   const [showUpdate, setShowUpdate] = useState(false);
   const handleCloseUpdate = () => setShowUpdate(false);
   const handleShowUpdate = () => setShowUpdate(true);
-
+  //paginate
+  const [itemOffset, setItemOffset] = useState(0);
+  const endOffset = itemOffset + pageSize;
+  const currentPets = pets.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(pets.length / pageSize);
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * 1) % pets.length;
+    console.log(
+      `User requested page number ${event.selected}, which is offset ${newOffset}`
+    );
+    setItemOffset(newOffset);
+  };
+  //search
+  const [name, setName] = useState("");
+  const handleOnChange = debounce((value) => {
+    setName(value);
+  });
+  ///////////////////////////////////////
   useEffect(() => {
-    fetchPets();
-  }, []);
+    fetchPets(name);
+  }, [name]);
 
   useEffect(() => {
     async function fetchPet() {
@@ -36,8 +55,12 @@ function Pets() {
     }
   }, [petId]);
 
-  async function fetchPets() {
-    const res = await fetch(`${baseURL}/pets`);
+  async function fetchPets(name = "") {
+    let api = `${baseURL}/pets`;
+    if (name) {
+      api = `${baseURL}/pets?name=${name}`;
+    }
+    const res = await fetch(api);
     const data = await res.json();
     setPets(data.pets);
   }
@@ -65,14 +88,33 @@ function Pets() {
           </div>
         </Card>
         <Card className={"p-4 mt-3"}>
-          <button className="btn btn-primary mb-3" onClick={handleShow}>
-            add pet
-          </button>
+          <div className="mb-3 d-flex justify-content-between align-items-center">
+            <button className="btn btn-primary" onClick={handleShow}>
+              add pet
+            </button>
+            <form>
+              <input
+                onChange={(e) => handleOnChange(e.target.value)}
+                className="form-control"
+                placeholder="enter search here"
+              />
+            </form>
+          </div>
           <PetTable
-            pets={pets}
+            pets={currentPets}
             fetchPets={fetchPets}
             handleShowUpdate={handleShowUpdate}
             setPetId={setPetId}
+          />
+          <ReactPaginate
+            className={classes.paginate}
+            breakLabel="..."
+            nextLabel="next >"
+            onPageChange={handlePageClick}
+            pageRangeDisplayed={5}
+            pageCount={pageCount}
+            previousLabel="< previous"
+            renderOnZeroPageCount={null}
           />
         </Card>
       </div>

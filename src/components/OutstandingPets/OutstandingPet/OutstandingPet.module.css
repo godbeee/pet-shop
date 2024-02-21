@@ -1,49 +1,24 @@
-.sub-cates {
-  display: flex;
-  gap: 1.5rem;
-  margin-top: 1rem;
-}
-.sub-cate {
-  background-color: #fff;
-  color: #000;
-  padding: 0.5rem 1rem;
-  border-radius: 10px;
-  cursor: pointer;
-}
-.sub-cate:hover,
-.sub-cate:active {
-  background-color: #000;
-  color: #fff;
-}
-
-.list {
-  margin-top: 1rem;
-  display: flex;
-  gap: 1%;
-}
-.list:hover > div {
-  filter: blur(3px);
-  opacity: 0.5;
-  transform: scale(0.98);
-  box-shadow: none;
-}
-.list:hover > div:hover {
-  transform: scale(1);
-  filter: blur(0px);
-  opacity: 1;
-  box-shadow: 0 8px 20px 0px rgba(0, 0, 0, 0.125);
-}
-/* .item {
-  flex-basis: 24%;
+.item {
+  flex-basis: 19%;
   border: 1px solid gainsboro;
   border-radius: 5px;
+  background: url("https://images.pexels.com/photos/1939485/pexels-photo-1939485.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+  background-size: cover;
 }
 
 .item div img {
   width: 100%;
+  height: 150px;
 }
 .body {
   padding: 1rem;
+}
+.tag {
+  padding: 0.1rem 0.5rem;
+  border-radius: 5px;
+  color: #fff;
+  background: #164863;
+  cursor: pointer;
 }
 .info {
   display: flex;
@@ -72,4 +47,4 @@
 }
 .action button:hover {
   box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
-} */
+}

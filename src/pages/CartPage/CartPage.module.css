@@ -1,28 +1,28 @@
+.banner {
+  margin: 4rem auto 1rem auto;
+  height: 9rem;
+  background-image: url(../../assets/banner.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1rem solid #bed1cf;
+}
+
 .card {
-  margin: auto;
+  margin: 0 auto 2rem auto;
   max-width: 1200px;
   width: 90%;
   box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 1rem;
   border: transparent;
 }
-@media (max-width: 767px) {
-  .card {
-    margin: 3vh auto;
-  }
-}
 .cart {
   background-color: #fff;
   padding: 4vh 5vh;
   border-bottom-left-radius: 1rem;
   border-top-left-radius: 1rem;
-}
-@media (max-width: 767px) {
-  .cart {
-    padding: 4vh;
-    border-bottom-left-radius: unset;
-    border-top-right-radius: 1rem;
-  }
 }
 .summary {
   background-color: #eeedeb;
@@ -35,6 +35,14 @@
   margin-top: 2vh;
 }
 @media (max-width: 767px) {
+  /* .card {
+    margin: 3vh auto;
+  } */
+  .cart {
+    padding: 4vh;
+    border-bottom-left-radius: unset;
+    border-top-right-radius: 1rem;
+  }
   .summary {
     border-top-right-radius: unset;
     border-bottom-left-radius: 1rem;

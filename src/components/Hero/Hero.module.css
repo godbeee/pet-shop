@@ -1,5 +1,6 @@
 .video-widget {
   background-color: azure;
+  margin-top: 5rem;
 }
 .video-widget video {
   width: 100%;

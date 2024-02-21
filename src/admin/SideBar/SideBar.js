@@ -23,7 +23,7 @@ function SideBar({ collapse }) {
           <MenuItem component={<NavLink to="/admin/pets" />} icon={<FaHome />}>
             pets
           </MenuItem>
-          <MenuItem component={<NavLink to="/users" />} icon={<FaHome />}>
+          <MenuItem component={<NavLink to="/admin/users" />} icon={<FaHome />}>
             users
           </MenuItem>
         </Menu>

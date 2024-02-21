@@ -108,6 +108,7 @@ function ModalUpdatePet({ show, handleClose, fetchPets, pet, setPet }) {
       weight: form.weight.value,
       age: form.age.value,
       desc: form.desc.value,
+      price: form.price.value,
     };
     const res = await fetch(`${baseURL}/pets/${pet?._id}`, {
       method: "POST",
@@ -219,7 +220,7 @@ function ModalUpdatePet({ show, handleClose, fetchPets, pet, setPet }) {
                   ))}
                 </select>
               </div>
-              <div className="col-md-6">
+              <div className="col-md-4">
                 <label className="form-label">weight</label>
                 <input
                   className="form-control"
@@ -228,13 +229,23 @@ function ModalUpdatePet({ show, handleClose, fetchPets, pet, setPet }) {
                   onChange={handleChange}
                 />
               </div>
-              <div className="col-md-6">
+              <div className="col-md-4">
                 <label className="form-label">age</label>
                 <input
                   type="number"
                   className="form-control"
                   name="age"
                   value={pet?.age}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="col-md-4">
+                <label className="form-label">price</label>
+                <input
+                  type="number"
+                  className="form-control"
+                  name="price"
+                  value={pet?.price}
                   onChange={handleChange}
                 />
               </div>

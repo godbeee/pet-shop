@@ -15,7 +15,7 @@ function Header() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const state = useSelector((state) => state.user.data);
-  console.log(state);
+  const cart = useSelector((state) => state.cart.cartItems);
 
   function handleNavigate(path) {
     navigate(path);
@@ -27,7 +27,7 @@ function Header() {
   }
   return (
     <>
-      <Navbar expand="lg" className="bg-body-tertiary">
+      <Navbar expand="lg" className="bg-body-tertiary fixed-top">
         <Container>
           <Link to={"/"} className={classes.branch}>
             <img height={40} src={logo} alt="logo" />
@@ -48,7 +48,7 @@ function Header() {
             <Nav>
               <NavLink className={`nav-link ${classes.cart}`} to="/cart">
                 <FaShoppingCart className={classes.icon} /> <span>cart</span>
-                <span className={classes.amount}>0</span>
+                <span className={classes.amount}>{cart.length}</span>
               </NavLink>
               {!state.isAuth && (
                 <>
@@ -81,29 +81,6 @@ function Header() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <Nav
-        style={{ backgroundColor: "#E5E1DA" }}
-        className="justify-content-center mb-2"
-      >
-        <Link
-          className={`${classes["sub-link"]} nav-link text-secondary`}
-          to="/"
-        >
-          dogs
-        </Link>
-        <Link
-          className={`${classes["sub-link"]} nav-link text-secondary`}
-          to="/"
-        >
-          cats
-        </Link>
-        <Link
-          className={`${classes["sub-link"]} nav-link text-secondary`}
-          to="/"
-        >
-          other
-        </Link>
-      </Nav>
     </>
   );
 }

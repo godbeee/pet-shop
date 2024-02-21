@@ -1,9 +1,13 @@
 import { useSelector } from "react-redux";
-import CartItem from "./CartItem/CartItem";
+import CartItem from "../Cart/CartItem/CartItem";
+import { configMoney } from "../../config/config";
 
-function Cart() {
+function SummaryOrder() {
   const cartItems = useSelector((state) => state.cart.cartItems);
-  console.log(cartItems);
+  const totalPrice = useSelector((state) => state.cart.totalPrice);
+  const formatedPrice = new Intl.NumberFormat("it-IT", configMoney).format(
+    totalPrice
+  );
   return (
     <>
       <div className="table-responsive">
@@ -14,25 +18,22 @@ function Cart() {
                 <div className="p-2 px-3 text-uppercase">Name</div>
               </th>
               <th scope="col" className="border-0 bg-light text-center">
-                <div className="py-2 text-uppercase">Price</div>
-              </th>
-              <th scope="col" className="border-0 bg-light text-center">
                 <div className="py-2 text-uppercase">Quantity</div>
               </th>
               <th scope="col" className="border-0 bg-light text-center">
-                <div className="py-2 text-uppercase">Remove</div>
+                <div className="py-2 text-uppercase">Price</div>
               </th>
             </tr>
           </thead>
           <tbody>
             {cartItems.map((ci) => (
-              <CartItem key={ci._id} ci={ci} />
+              <CartItem key={ci._id} ci={ci} isSummary />
             ))}
             {cartItems.length < 1 && (
               <tr>
                 <td
                   style={{ color: "#8CB9BD" }}
-                  colSpan="4"
+                  colspan="3"
                   className="text-center w-100 fs-3"
                 >
                   No Pet Selected!
@@ -41,9 +42,15 @@ function Cart() {
             )}
           </tbody>
         </table>
+        <hr></hr>
+        <div className="d-flex justify-content-end">
+          <p>
+            <strong>Total Price:</strong> {formatedPrice}
+          </p>
+        </div>
       </div>
     </>
   );
 }
 
-export default Cart;
+export default SummaryOrder;

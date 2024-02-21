@@ -100,6 +100,7 @@ function ModalAddPet({ show, handleClose, fetchPets }) {
       weight: form.weight.value,
       age: form.age.value,
       desc: form.desc.value,
+      price: form.price.value,
     };
     const res = await fetch(`${baseURL}/pets`, {
       method: "POST",
@@ -196,13 +197,17 @@ function ModalAddPet({ show, handleClose, fetchPets }) {
                   ))}
                 </select>
               </div>
-              <div className="col-md-6">
+              <div className="col-md-4">
                 <label className="form-label">weight</label>
-                <input className="form-control" name="weight" />
+                <input type="number" className="form-control" name="weight" />
               </div>
-              <div className="col-md-6">
+              <div className="col-md-4">
                 <label className="form-label">age</label>
                 <input type="number" className="form-control" name="age" />
+              </div>
+              <div className="col-md-4">
+                <label className="form-label">price</label>
+                <input type="number" className="form-control" name="price" />
               </div>
               <div className="col-12">
                 <label className="form-label">description</label>

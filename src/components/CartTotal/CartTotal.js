@@ -1,7 +1,16 @@
 import classes from "./CartTotal.module.css";
 import { FaGift } from "react-icons/fa";
+import { useSelector } from "react-redux";
+import { configMoney } from "../../config/config";
+import { Link } from "react-router-dom";
 
 function CartTotal() {
+  const totalPrice = useSelector((state) => state.cart.totalPrice);
+  const formatedPrice = new Intl.NumberFormat("it-IT", configMoney).format(
+    totalPrice
+  );
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  const url = cartItems.length === 0 ? null : "/checkout";
   return (
     <>
       <div>
@@ -10,24 +19,20 @@ function CartTotal() {
         </h5>
       </div>
       <hr />
-      {/* <div className="row mb-3">
-        <div className="col">ITEMS 3</div>
-        <div className="col text-right">&euro; 132.00</div>
-      </div> */}
       <form className={classes.form}>
-        <p class="fst-italic mb-2 px-1">
+        <p className="fst-italic mb-2 px-1">
           If you have a coupon code, please enter it
         </p>
         <div
           style={{ backgroundColor: "#fff" }}
-          class="input-group mb-4 border rounded-pill p-2"
+          className="input-group mb-4 border rounded-pill p-2"
         >
           <input
             type="text"
             placeholder="Apply coupon"
-            class="form-control border-0"
+            className="form-control border-0"
           />
-          <div class="input-group-append border-0">
+          <div className="input-group-append border-0">
             <button
               id="button-addon3"
               type="button"
@@ -39,11 +44,14 @@ function CartTotal() {
           </div>
         </div>
       </form>
-      <div class="row">
-        <div className="col">TOTAL PRICE</div>
-        <div className="col text-right">&euro; 137.00</div>
+      <div className="row">
+        <div className="col">
+          <strong>Total Price:</strong> {formatedPrice}
+        </div>
       </div>
-      <button className="btn btn-success w-100 mt-4">CHECKOUT</button>
+      <Link to={url} className="btn btn-success w-100 mt-4">
+        CHECKOUT
+      </Link>
     </>
   );
 }

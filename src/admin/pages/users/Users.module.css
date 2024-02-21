@@ -1,0 +1,11 @@
+.paginate {
+  display: flex;
+  justify-content: flex-end;
+  list-style: none;
+  gap: 1rem;
+  margin-bottom: 0;
+}
+.paginate li a {
+  text-decoration: none;
+  color: #000;
+}

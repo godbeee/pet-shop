@@ -1,7 +1,7 @@
+import { baseURL } from "../../../../../config/config";
 import { toast } from "react-toastify";
-import { baseURL } from "../../config/config";
 
-function PetTable({ pets, fetchPets, handleShowUpdate, setPetId }) {
+function UserTable({ users, handleShow, setUserId, fetchUsers }) {
   let i = 1;
   function notify(msg, isError) {
     if (isError) {
@@ -25,35 +25,23 @@ function PetTable({ pets, fetchPets, handleShowUpdate, setPetId }) {
       progress: undefined,
     });
   }
-  async function handleDelete(id, public_id) {
+  function handleView(id) {
+    setUserId(id);
+    handleShow();
+  }
+  async function handleDelete(id) {
     const isConfirm = window.confirm("are u sure delete this?");
     if (isConfirm) {
-      const res = await fetch(`${baseURL}/pets/${id}`, {
+      const res = await fetch(`${baseURL}/users/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
         },
       });
       await res.json();
-      fetchPets();
-      try {
-        const res = await fetch(`${baseURL}/removeimage`, {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify({ public_id }),
-        });
-        await res.json();
-        notify("delete pet success!");
-      } catch (err) {
-        console.log(err);
-      }
+      notify("delete user success!");
+      fetchUsers();
     }
-  }
-  function handleUpdate(id) {
-    setPetId(id);
-    handleShowUpdate();
   }
   return (
     <>
@@ -62,31 +50,31 @@ function PetTable({ pets, fetchPets, handleShowUpdate, setPetId }) {
           <tr>
             <th scope="col">#</th>
             <th className="col-md-4" scope="col">
-              name
+              fullname
             </th>
-            <th scope="col">type</th>
-            <th scope="col">breed</th>
+            <th scope="col">email</th>
+            <th scope="col">phone</th>
             <th className="col-md-2" scope="col">
               action
             </th>
           </tr>
         </thead>
         <tbody>
-          {pets.map((pet) => (
-            <tr key={pet._id}>
+          {users.map((user) => (
+            <tr key={user._id}>
               <th scope="row">{i++}</th>
-              <td>{pet.name}</td>
-              <td>{pet.type}</td>
-              <td>{pet.breed}</td>
+              <td>{user.fullname}</td>
+              <td>{user.email}</td>
+              <td>{user.phone}</td>
               <td>
                 <button
-                  onClick={() => handleUpdate(pet._id)}
-                  className="btn btn-primary mx-2"
+                  onClick={() => handleView(user._id)}
+                  className="btn btn-success mx-2"
                 >
-                  update
+                  view
                 </button>
                 <button
-                  onClick={() => handleDelete(pet._id, pet?.avatar?.public_id)}
+                  onClick={() => handleDelete(user._id)}
                   className="btn btn-danger mx-2"
                 >
                   delete
@@ -94,10 +82,10 @@ function PetTable({ pets, fetchPets, handleShowUpdate, setPetId }) {
               </td>
             </tr>
           ))}
-          {pets.length === 0 && (
+          {users.length === 0 && (
             <tr>
               <td className="text-center fw-bold" colSpan={5}>
-                No Pet!
+                No User!
               </td>
             </tr>
           )}
@@ -107,4 +95,4 @@ function PetTable({ pets, fetchPets, handleShowUpdate, setPetId }) {
   );
 }
 
-export default PetTable;
+export default UserTable;

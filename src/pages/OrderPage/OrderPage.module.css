@@ -9,3 +9,10 @@
   align-items: center;
   border-top: 1rem solid #bed1cf;
 }
+.view {
+  padding: 0.5rem 1rem;
+  background-color: #8cb9bd;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+}

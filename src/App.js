@@ -8,9 +8,11 @@ import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import CartPage from "./pages/CartPage/CartPage";
 import CheckoutPage from "./pages/CheckoutPage/CheckoutPage";
 import OrderPage from "./pages/OrderPage/OrderPage";
+import OrderDetailPage from "./pages/OrderDetailPage/OrderDetailPage";
 import Protect from "./components/Protect/Protect";
 import DashBoard from "./admin/Dashboard/Dashboard";
 import Pets from "./admin/pages/pets/Pets";
+import Users from "./admin/pages/users/Users";
 import { ToastContainer } from "react-toastify";
 
 import "./App.css";
@@ -35,9 +37,18 @@ function App() {
               </Protect>
             }
           ></Route>
+          <Route
+            path="order/:id"
+            element={
+              <Protect>
+                <OrderDetailPage />
+              </Protect>
+            }
+          ></Route>
         </Route>
         <Route path="/admin" element={<DashBoard />}>
           <Route path="pets" element={<Pets />}></Route>
+          <Route path="users" element={<Users />}></Route>
         </Route>
       </Routes>
       <ToastContainer />
