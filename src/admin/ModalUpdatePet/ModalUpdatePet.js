@@ -53,10 +53,10 @@ function ModalUpdatePet({ show, handleClose, fetchPets, pet, setPet }) {
     if (file) {
       Resizer.imageFileResizer(
         file,
-        207,
-        138,
+        500,
+        500,
         "JPEG",
-        80,
+        100,
         0,
         async (uri) => {
           setIsLoadingImg(true);

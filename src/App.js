@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./pages/Layout/Layout";
 import PetsPage from "./pages/PetsPage/PetsPage";
+import PetsCatePage from "./pages/PetsCatePage/PetsCatePage";
+import PetDetailPage from "./pages/PetDetailPage/PetDetailPage";
 import BlogPage from "./pages/BlogPage/BlogPage";
 import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
@@ -24,6 +26,8 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />}></Route>
           <Route path="pets" element={<PetsPage />}></Route>
+          <Route path="pets/:cate" element={<PetsCatePage />}></Route>
+          <Route path="detail/:id" element={<PetDetailPage />}></Route>
           <Route path="blog" element={<BlogPage />}></Route>
           <Route path="login" element={<LoginPage />}></Route>
           <Route path="register" element={<RegisterPage />}></Route>

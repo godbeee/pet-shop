@@ -106,7 +106,7 @@ function OrderDetailPage() {
                       <tr key={ci._id}>
                         <th scope="row" className="border-0">
                           <div className="p-2">
-                            {!ci.petId.avatar && (
+                            {!ci.petId?.avatar && (
                               <img
                                 src="https://placehold.co/220x138?text=Empty"
                                 alt="empty"
@@ -114,7 +114,7 @@ function OrderDetailPage() {
                                 className="img-fluid rounded shadow-sm"
                               />
                             )}
-                            {ci.petId.avatar && (
+                            {ci.petId?.avatar && (
                               <img
                                 src={ci?.petId?.avatar?.url}
                                 alt={ci?.petId?.name}
@@ -125,11 +125,11 @@ function OrderDetailPage() {
                             <div className="mx-3 d-inline-block align-middle">
                               <h5 className="mb-0">
                                 <span className="text-dark d-inline-block align-middle">
-                                  {ci.petId.name}
+                                  {ci.petId?.name}
                                 </span>
                               </h5>
                               <span className="text-muted font-weight-normal font-italic d-block">
-                                Type: {ci.petId.type}
+                                Type: {ci.petId?.type}
                               </span>
                             </div>
                           </div>

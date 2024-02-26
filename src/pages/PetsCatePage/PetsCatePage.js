@@ -1,17 +1,21 @@
 import { Container } from "react-bootstrap";
 import PetList from "../../components/PetList/PetList";
 import PetFilter from "../../components/PetFilter/PetFilter";
-import classes from "./PetsPage.module.css";
+import classes from "./PetsCatePage.module.css";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { baseURL, pageSize } from "../../config/config";
 import ReactPaginate from "react-paginate";
 import NavCate from "../../components/NavCate/NavCate";
+import { useParams } from "react-router-dom";
 
-function PetsPage() {
+function PetsCatePage() {
+  const params = useParams();
   const [pets, setPets] = useState([]);
   const [sortBy, setSortBy] = useState(null);
   const [keyword, setKeyword] = useState("");
+  const cate = params.cate;
+  console.log(cate);
   //paginate
   const [itemOffset, setItemOffset] = useState(0);
   const endOffset = itemOffset + pageSize;
@@ -25,13 +29,15 @@ function PetsPage() {
   useEffect(() => {
     async function fetchPets() {
       const res = await fetch(
-        `${baseURL}/shop/pets?name=${keyword}&sort=${sortBy}`
+        `${baseURL}/shop/pets?type=${cate}&name=${keyword}&sort=${sortBy}`
       );
       const data = await res.json();
       setPets(data.pets);
     }
-    fetchPets();
-  }, [keyword, sortBy]);
+    if (cate === "dog" || cate === "cat") {
+      fetchPets();
+    }
+  }, [keyword, sortBy, cate]);
   return (
     <>
       <Container style={{ marginTop: "4rem", marginBottom: "4rem" }}>
@@ -49,7 +55,7 @@ function PetsPage() {
         </div>
         <div className="row">
           <div className="col-md-12">
-            <NavCate />
+            <NavCate cate={cate} />
             <PetFilter setKeyword={setKeyword} setSortBy={setSortBy} />
             <PetList pets={currentPets} />
             <div className="row mt-3">
@@ -71,4 +77,4 @@ function PetsPage() {
   );
 }
 
-export default PetsPage;
+export default PetsCatePage;

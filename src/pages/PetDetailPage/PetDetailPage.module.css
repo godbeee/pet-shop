@@ -1,0 +1,33 @@
+.banner {
+  margin: 4rem auto 1rem auto;
+  height: 9rem;
+  background-image: url(../../assets/banner.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1rem solid #bed1cf;
+}
+.tag {
+  padding: 0.1rem 0.5rem;
+  border-radius: 5px;
+  color: #fff;
+  background: #164863;
+  cursor: pointer;
+}
+.action {
+  padding: 0.5rem 0;
+  display: flex;
+}
+.action button {
+  padding: 6px 1rem;
+  cursor: pointer;
+  border: 1px solid gainsboro;
+  font-family: "Lato", sans-serif;
+  font-weight: 500;
+  border-radius: 6px;
+  background: #8cb9bd;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  color: #fff;
+}

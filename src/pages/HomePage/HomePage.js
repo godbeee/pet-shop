@@ -5,11 +5,13 @@ import { Container } from "react-bootstrap";
 
 function HomePage() {
   return (
-    <Container>
-      <Hero />
-      <Category />
-      <OutstandingPets />
-    </Container>
+    <>
+      <Container>
+        <Hero />
+        <Category />
+        <OutstandingPets />
+      </Container>
+    </>
   );
 }
 

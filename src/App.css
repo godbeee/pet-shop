@@ -24,10 +24,8 @@
   color: #fff !important;
 }
 .selected {
-  background-color: cadetblue !important;
-  padding: 0 0.5rem;
-  border-radius: 50%;
-  color: #fff;
+  color: cadetblue;
+  font-weight: bold;
 }
 .disabled a {
   color: gainsboro !important;

@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+.container a {
+  text-decoration: none;
+  color: #000;
+  font-size: 1.6rem;
+  background-color: #9ad0c27d;
+  color: black;
+  padding: 0.5rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.label {
+  margin-right: 4px;
+}
+.active {
+  background-color: #2d9596 !important;
+  color: #fff !important;
+}
