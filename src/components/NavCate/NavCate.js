@@ -9,7 +9,9 @@ function NavCate({ cate }) {
       <div className={classes.container}>
         <Link
           to={"/pets/dog"}
-          className={`d-flex justify-content-center align-items-center ${
+          className={`${
+            classes.btn
+          } d-flex justify-content-center align-items-center ${
             cate === "dog" ? classes.active : ""
           }`}
         >
@@ -18,7 +20,9 @@ function NavCate({ cate }) {
         </Link>
         <Link
           to={"/pets/cat"}
-          className={`d-flex justify-content-center align-items-center ${
+          className={`${
+            classes.btn
+          } d-flex justify-content-center align-items-center ${
             cate === "cat" ? classes.active : ""
           }`}
         >

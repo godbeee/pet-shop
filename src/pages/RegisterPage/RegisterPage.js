@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import classes from "./RegisterPage.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import { baseURL } from "../../config/config";
@@ -76,7 +76,7 @@ function RegisterPage() {
             <input type="tel" name="phone" />
           </div>
           <div className={classes["form-control"]}>
-            <button className="btn btn-secondary">register</button>
+            <button className="btn btn-secondary">Register</button>
           </div>
         </form>
       </div>

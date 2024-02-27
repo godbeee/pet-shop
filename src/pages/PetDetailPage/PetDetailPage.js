@@ -4,7 +4,7 @@ import { Container } from "react-bootstrap";
 import Card from "../../components/UI/Card";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { baseURL } from "../../config/config";
+import { baseURL, configMoney } from "../../config/config";
 import Stack from "react-bootstrap/Stack";
 import { BiMessageSquareCheck } from "react-icons/bi";
 import { LiaWeightSolid } from "react-icons/lia";
@@ -15,6 +15,7 @@ import { useDispatch } from "react-redux";
 import { cartAction } from "../../store/slices/cartSlice";
 import TabCustom from "../../components/Tab/Tab";
 import PetListRelate from "../../components/PetListRelate/PetListRelate";
+import Fancybox from "../../components/UI/Fancy";
 
 function PetDetailPage() {
   const dispatch = useDispatch();
@@ -27,7 +28,6 @@ function PetDetailPage() {
     async function fetchPet() {
       const res = await fetch(`${baseURL}/pets/${petId}`);
       const data = await res.json();
-      console.log(data);
       setPet(data.pet);
       setPetRelate(data.petRelate);
     }
@@ -61,16 +61,37 @@ function PetDetailPage() {
       <Container>
         <Card>
           <div className="row">
-            <div className="col-md-6">
-              <img
-                style={{ width: "100%" }}
-                src={pet?.avatar?.url}
-                alt={pet?.name}
-              ></img>
+            <div className="col-md-12 col-lg-6">
+              {pet?.avatar && (
+                <Fancybox
+                  options={{
+                    Carousel: {
+                      infinite: false,
+                    },
+                  }}
+                >
+                  <a data-fancybox="gallery" href={pet?.avatar?.url}>
+                    <img
+                      style={{ width: "100%" }}
+                      src={pet?.avatar?.url}
+                      alt={pet?.name}
+                    />
+                  </a>
+                </Fancybox>
+              )}
+              {!pet?.avatar && (
+                <img
+                  style={{ width: "100%" }}
+                  src={"https://placehold.co/600x400?text=empty+image"}
+                  alt={pet?.name}
+                ></img>
+              )}
             </div>
-            <div className="col-md-6 p-4">
+            <div className="col-md-12 col-lg-6 p-4">
               <div className="row">
-                <h2 className="">{pet?.name}</h2>
+                <h2 style={{ marginBottom: "2rem" }} className="">
+                  {pet?.name}
+                </h2>
                 <div className="col-md-5">
                   <Stack className="mb-3" direction="horizontal" gap={1}>
                     <div className={classes.tag}>{pet?.type}</div>
@@ -79,7 +100,10 @@ function PetDetailPage() {
                   <div className="d-flex flex-column gap-2 fs-5">
                     <span>
                       <IoPricetagOutline className="mx-1" />
-                      <strong>Price:</strong> {pet?.price}
+                      <strong>Price:</strong>{" "}
+                      {new Intl.NumberFormat("it-IT", configMoney).format(
+                        pet?.price
+                      )}
                     </span>
                     <span>
                       <PiGenderIntersex className="mx-1" />
@@ -106,15 +130,10 @@ function PetDetailPage() {
                   </div>
                 </div>
                 <div className="col-md-7 fs-5">
-                  <div>
+                  <div style={{ marginBottom: "0.6rem" }}>
                     <strong>Description:</strong>
                   </div>
-                  <p className="fst-italic">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut
-                  </p>
+                  <p className="fst-italic">{pet?.desc}</p>
                 </div>
               </div>
             </div>

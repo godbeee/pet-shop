@@ -83,6 +83,9 @@ body {
   margin-left: 1px;
 }
 
+.breadcrumbs__item:-child {
+  border-right: none;
+}
 .breadcrumbs__item:last-child {
   border-right: none;
 }
@@ -90,4 +93,11 @@ body {
 .breadcrumbs__item.is-active {
   background: #8cb9bd;
   color: #fff;
+}
+
+@media (max-width: 576px) {
+  .spec {
+    background-color: transparent !important;
+    color: #9e5168 !important;
+  }
 }

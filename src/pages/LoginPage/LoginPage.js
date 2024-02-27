@@ -73,14 +73,23 @@ function LoginPage() {
             <input type="password" name="password" />
           </div>
           <div className={classes["form-control"]}>
-            <button className="btn btn-secondary">login</button>
+            <button className="btn btn-secondary">Login</button>
           </div>
           <div>
-            <Link>forget password</Link>
-            <Link>register.</Link>
+            <Link to={"/register"}>
+              dont have account ?{" "}
+              <span
+                style={{
+                  color: "cadetblue",
+                  fontWeight: "bold",
+                  letterSpacing: "1px",
+                  fontSize: "1.2rem",
+                }}
+              >
+                register
+              </span>
+            </Link>
           </div>
-          <hr></hr>
-          <p style={{ textAlign: "center" }}>or login with</p>
         </form>
       </div>
       <ToastContainer />

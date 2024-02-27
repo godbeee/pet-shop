@@ -59,7 +59,7 @@
   overflow: hidden;
 }
 .article img {
-  max-width: 100%;
+  width: 100%;
   transform-origin: center;
   transform: scale(var(--img-scale));
   transition: transform 0.4s ease-in-out;

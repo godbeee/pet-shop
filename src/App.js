@@ -15,6 +15,8 @@ import Protect from "./components/Protect/Protect";
 import DashBoard from "./admin/Dashboard/Dashboard";
 import Pets from "./admin/pages/pets/Pets";
 import Users from "./admin/pages/users/Users";
+import Orders from "./admin/pages/orders/Orders";
+import Home from "./admin/pages/home/Home";
 import { ToastContainer } from "react-toastify";
 
 import "./App.css";
@@ -51,8 +53,10 @@ function App() {
           ></Route>
         </Route>
         <Route path="/admin" element={<DashBoard />}>
+          <Route index path="dashboard" element={<Home />}></Route>
           <Route path="pets" element={<Pets />}></Route>
           <Route path="users" element={<Users />}></Route>
+          <Route path="orders" element={<Orders />}></Route>
         </Route>
       </Routes>
       <ToastContainer />

@@ -147,13 +147,16 @@ function ModalAddPet({ show, handleClose, fetchPets }) {
                     </>
                   )}
                   {!imageUpload && (
-                    <img src="https://placehold.co/207x138" alt="avatar" />
+                    <img
+                      src="https://placehold.co/207x138?text=empty"
+                      alt="avatar"
+                    />
                   )}
                 </div>
               </div>
               <div className="col-12 d-flex align-items-center gap-3">
                 <label className={classes.upload}>
-                  upload images <FaCirclePlus />
+                  Upload images <FaCirclePlus />
                   <input
                     type="file"
                     name="image"
@@ -188,7 +191,7 @@ function ModalAddPet({ show, handleClose, fetchPets }) {
                 </select>
               </div>
               <div className="col-md-6">
-                <label className="form-label">breed</label>
+                <label className="form-label">Breed</label>
                 <select name="breed" className="form-control">
                   {breeds.map((breed, i) => (
                     <option key={i} value={breed}>
@@ -198,27 +201,27 @@ function ModalAddPet({ show, handleClose, fetchPets }) {
                 </select>
               </div>
               <div className="col-md-4">
-                <label className="form-label">weight</label>
+                <label className="form-label">Weight</label>
                 <input type="number" className="form-control" name="weight" />
               </div>
               <div className="col-md-4">
-                <label className="form-label">age</label>
+                <label className="form-label">Age</label>
                 <input type="number" className="form-control" name="age" />
               </div>
               <div className="col-md-4">
-                <label className="form-label">price</label>
+                <label className="form-label">Price</label>
                 <input type="number" className="form-control" name="price" />
               </div>
               <div className="col-12">
-                <label className="form-label">description</label>
-                <input
+                <label className="form-label">Description</label>
+                <textarea
                   name="desc"
                   className="form-control"
                   placeholder="description"
                 />
               </div>
               <div className="col-12 mt-3 d-flex justify-content-end">
-                <button className="btn btn-success">add pet</button>
+                <button className="btn btn-success">Add pet</button>
               </div>
             </form>
           </Modal.Body>

@@ -5,7 +5,7 @@ function PetListRelate({ petRelate }) {
   return (
     <>
       {petRelate.length > 0 && (
-        <h3 style={{ marginBottom: "1.5rem" }}>Relate Product</h3>
+        <h3 style={{ marginBottom: "1.5rem" }}>Relate Pets</h3>
       )}
       <div className={classes.list}>
         {petRelate.length > 0 &&

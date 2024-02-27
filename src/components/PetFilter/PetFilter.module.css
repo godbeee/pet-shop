@@ -18,3 +18,8 @@
   border: none;
   outline: 1px solid gainsboro;
 }
+@media (max-width: 576px) {
+  .form input {
+    margin-bottom: 1rem;
+  }
+}

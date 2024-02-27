@@ -2,6 +2,7 @@ import { FaTrash } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { cartAction } from "../../../store/slices/cartSlice";
 import { configMoney } from "../../../config/config";
+import classes from "./CartItem.module.css";
 
 function CartItem({ ci, isSummary = false }) {
   const dispatch = useDispatch();
@@ -25,24 +26,26 @@ function CartItem({ ci, isSummary = false }) {
       <>
         <tr key={ci._id}>
           <th scope="row" className="border-0">
-            <div className="p-2">
-              {!ci.avatar && (
-                <img
-                  src="https://placehold.co/220x138?text=Empty"
-                  alt="empty"
-                  width="70"
-                  className="img-fluid rounded shadow-sm"
-                />
-              )}
-              {ci.avatar && (
-                <img
-                  src={ci?.avatar?.url}
-                  alt={ci?.name}
-                  width="70"
-                  className="img-fluid rounded shadow-sm"
-                />
-              )}
-              <div className="mx-3 d-inline-block align-middle">
+            <div>
+              <div>
+                {!ci.avatar && (
+                  <img
+                    src="https://placehold.co/220x138?text=Empty"
+                    alt="empty"
+                    width="80"
+                    className="img-fluid rounded shadow-sm"
+                  />
+                )}
+                {ci.avatar && (
+                  <img
+                    src={ci?.avatar?.url}
+                    alt={ci?.name}
+                    width="80"
+                    className="img-fluid rounded shadow-sm"
+                  />
+                )}
+              </div>
+              <div className="d-inline-block align-middle">
                 <h5 className="mb-0">
                   <span className="text-dark d-inline-block align-middle">
                     {ci.name}
@@ -85,24 +88,24 @@ function CartItem({ ci, isSummary = false }) {
       <>
         <tr key={ci._id}>
           <th scope="row" className="border-0">
-            <div className="p-2">
+            <div>
               {!ci.avatar && (
                 <img
                   src="https://placehold.co/220x138?text=Empty"
                   alt="empty"
-                  width="70"
-                  className="img-fluid rounded shadow-sm"
+                  width="80"
+                  className="img-fluid rounded shadow-sm mx-1"
                 />
               )}
               {ci.avatar && (
                 <img
                   src={ci?.avatar?.url}
                   alt={ci?.name}
-                  width="70"
-                  className="img-fluid rounded shadow-sm"
+                  width="80"
+                  className="img-fluid rounded shadow-sm mx-1"
                 />
               )}
-              <div className="mx-3 d-inline-block align-middle">
+              <div className={`d-inline-block align-middle ${classes.name}`}>
                 <h5 className="mb-0">
                   <span className="text-dark d-inline-block align-middle">
                     {ci.name}

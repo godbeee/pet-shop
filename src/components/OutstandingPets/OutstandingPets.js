@@ -10,7 +10,6 @@ function OutstandingPets() {
     async function fetchPets() {
       const res = await fetch(`${baseURL}/outstanding`);
       const data = await res.json();
-      console.log(data);
       setPets(data.pets);
     }
     fetchPets();
@@ -19,7 +18,9 @@ function OutstandingPets() {
   return (
     <>
       <div style={{ margin: "2rem 0" }}>
-        <h2 style={{ marginBottom: "1.5rem" }}>Outstanding Pets</h2>
+        {pets.length > 0 && (
+          <h2 style={{ marginBottom: "1.5rem" }}>Outstanding Pets</h2>
+        )}
         <div className={classes.list}>
           {pets.length > 0 &&
             pets.map((pet) => <PetItem key={pet._id} pet={pet} />)}

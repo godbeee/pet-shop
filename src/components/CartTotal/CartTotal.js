@@ -32,14 +32,14 @@ function CartTotal() {
             placeholder="Apply coupon"
             className="form-control border-0"
           />
-          <div className="input-group-append border-0">
+          <div className="input-group-append border-0 d-flex align-items-center">
             <button
               id="button-addon3"
               type="button"
               className="btn btn-dark px-4 rounded-pill d-flex gap-2 align-items-center"
             >
               <FaGift />
-              Apply coupon
+              <span className={classes.coupon}>Apply coupon</span>
             </button>
           </div>
         </div>

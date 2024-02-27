@@ -28,10 +28,7 @@ function Pets() {
   const currentPets = pets.slice(itemOffset, endOffset);
   const pageCount = Math.ceil(pets.length / pageSize);
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * 1) % pets.length;
-    console.log(
-      `User requested page number ${event.selected}, which is offset ${newOffset}`
-    );
+    const newOffset = (event.selected * pageSize) % pets.length;
     setItemOffset(newOffset);
   };
   //search
@@ -70,7 +67,7 @@ function Pets() {
       <div className="p-3">
         <Card className={"p-4"}>
           <div className={classes.head}>
-            <h3>pets management</h3>
+            <h3>Pets management</h3>
             <ModalAddPet
               show={show}
               handleShow={handleShow}
@@ -90,13 +87,13 @@ function Pets() {
         <Card className={"p-4 mt-3"}>
           <div className="mb-3 d-flex justify-content-between align-items-center">
             <button className="btn btn-primary" onClick={handleShow}>
-              add pet
+              Add pet
             </button>
             <form>
               <input
                 onChange={(e) => handleOnChange(e.target.value)}
                 className="form-control"
-                placeholder="enter search here"
+                placeholder="Enter search here"
               />
             </form>
           </div>

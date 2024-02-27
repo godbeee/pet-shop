@@ -58,3 +58,14 @@
 .sub-link:hover {
   border-bottom: 1px solid #d04848;
 }
+
+@media (max-width: 576px) {
+  .cart {
+    display: none !important;
+  }
+}
+@media (min-width: 576px) {
+  a.test {
+    display: none !important;
+  }
+}

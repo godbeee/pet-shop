@@ -10,10 +10,10 @@ function TabCustom() {
           <Tab>Comment</Tab>
         </TabList>
 
-        <TabPanel>
+        <TabPanel className={"px-3"}>
           <h2>detail</h2>
         </TabPanel>
-        <TabPanel>
+        <TabPanel className={"px-3"}>
           <h2>comment</h2>
         </TabPanel>
       </Tabs>

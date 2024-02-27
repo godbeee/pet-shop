@@ -9,3 +9,13 @@
   align-items: center;
   border-top: 1rem solid #bed1cf;
 }
+
+@media (max-width: 576px) {
+  .item2 {
+    order: 1;
+  }
+
+  .item1 {
+    order: 4;
+  }
+}

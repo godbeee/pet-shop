@@ -11,11 +11,11 @@ import { Link } from "react-router-dom";
 function PetItem({ pet }) {
   const dispatch = useDispatch();
   let name = pet?.name;
-  if (name.length > 20) {
-    name = pet?.name?.slice(0, 19) + "...";
+  if (name.length > 28) {
+    name = pet?.name?.slice(0, 28) + "...";
   }
-  console.log(name);
   function handleAddItemToCart(e) {
+    e.preventDefault();
     dispatch(
       cartAction.addToCart({
         ...pet,
@@ -33,7 +33,10 @@ function PetItem({ pet }) {
           <figure>
             {pet.avatar && <img src={pet.avatar.url} alt={pet.name} />}
             {!pet.avatar && (
-              <img src="https://picsum.photos/id/1011/800/450" alt="" />
+              <img
+                src={"https://placehold.co/600x400?text=empty+image"}
+                alt=""
+              />
             )}
           </figure>
           <div className={classes["article-body"]}>

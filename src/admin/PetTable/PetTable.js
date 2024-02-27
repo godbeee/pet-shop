@@ -62,18 +62,18 @@ function PetTable({ pets, fetchPets, handleShowUpdate, setPetId }) {
           <tr>
             <th scope="col">#</th>
             <th className="col-md-4" scope="col">
-              name
+              Name
             </th>
-            <th scope="col">type</th>
-            <th scope="col">breed</th>
+            <th scope="col">Type</th>
+            <th scope="col">Breed</th>
             <th className="col-md-2" scope="col">
-              action
+              Action
             </th>
           </tr>
         </thead>
         <tbody>
           {pets.map((pet) => (
-            <tr key={pet._id}>
+            <tr valign="middle" key={pet._id}>
               <th scope="row">{i++}</th>
               <td>{pet.name}</td>
               <td>{pet.type}</td>
@@ -81,15 +81,15 @@ function PetTable({ pets, fetchPets, handleShowUpdate, setPetId }) {
               <td>
                 <button
                   onClick={() => handleUpdate(pet._id)}
-                  className="btn btn-primary mx-2"
+                  className="btn btn-primary mx-1"
                 >
-                  update
+                  Update
                 </button>
                 <button
                   onClick={() => handleDelete(pet._id, pet?.avatar?.public_id)}
-                  className="btn btn-danger mx-2"
+                  className="btn btn-danger mx-1"
                 >
-                  delete
+                  Delete
                 </button>
               </td>
             </tr>

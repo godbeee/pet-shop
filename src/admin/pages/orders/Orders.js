@@ -1,18 +1,17 @@
-import classes from "./Users.module.css";
-import Card from "../../../components/UI/Card";
+import classes from "./Orders.module.css";
 import { useState, useEffect } from "react";
-import { baseURL } from "../../../config/config";
-import UserTable from "./components/UserTable/UserTable";
-import ReactPaginate from "react-paginate";
-import { pageSize } from "../../../config/config";
+import Card from "../../../components/UI/Card";
 import { debounce } from "../../../utils/ultils";
-import ModalViewUser from "./components/ModalViewUser/ModalViewUser";
+import { baseURL, pageSize } from "../../../config/config";
+import OrderTable from "./components/OrderTable/OrderTable";
+import ReactPaginate from "react-paginate";
+import ModalViewOrder from "./components/ModalViewOrder/ModalViewOrder";
 
-function Users() {
-  //users
-  const [users, setUsers] = useState([]);
-  const [userId, setUserId] = useState(null);
-  const [user, setUser] = useState(null);
+function Orders() {
+  //orders
+  const [orders, setOrders] = useState([]);
+  const [orderId, setOrderId] = useState(null);
+  const [order, setOrder] = useState(null);
   //view modal
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -20,13 +19,10 @@ function Users() {
   //paginate
   const [itemOffset, setItemOffset] = useState(0);
   const endOffset = itemOffset + pageSize;
-  const currentUsers = users.slice(itemOffset, endOffset);
-  const pageCount = Math.ceil(users.length / pageSize);
+  const currentOrders = orders.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(orders.length / pageSize);
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * pageSize) % users.length;
-    console.log(
-      `User requested page number ${event.selected}, which is offset ${newOffset}`
-    );
+    const newOffset = (event.selected * pageSize) % orders.length;
     setItemOffset(newOffset);
   };
   //search
@@ -36,35 +32,41 @@ function Users() {
   });
   ///////////////////////////////////////
   useEffect(() => {
-    fetchUsers(fullname);
+    fetchOrders(fullname);
   }, [fullname]);
   useEffect(() => {
-    async function fetchUser() {
-      const res = await fetch(`${baseURL}/users/${userId}`);
+    async function fetchOrder() {
+      const res = await fetch(`${baseURL}/orders/${orderId}`);
       const data = await res.json();
-      setUser(data.user);
+      setOrder(data.order);
     }
-    if (userId) {
-      fetchUser();
+    if (orderId) {
+      fetchOrder();
     }
-  }, [userId]);
+  }, [orderId]);
 
-  async function fetchUsers(fullname = "") {
-    let api = `${baseURL}/users`;
+  async function fetchOrders(fullname = "") {
+    let api = `${baseURL}/admin/orders`;
     if (fullname) {
-      api = `${baseURL}/users?fullname=${fullname}`;
+      api = `${baseURL}/admin/orders?fullname=${fullname}`;
     }
     const res = await fetch(api);
     const data = await res.json();
-    setUsers(data.users);
+    setOrders(data.orders);
   }
+
   return (
     <>
       <div className="p-3">
         <Card className={"p-4"}>
           <div className={classes.head}>
-            <h3>Users management</h3>
-            <ModalViewUser user={user} show={show} handleClose={handleClose} />
+            <h3>Orders management</h3>
+            <ModalViewOrder
+              order={order}
+              show={show}
+              handleClose={handleClose}
+              fetchOrders={fetchOrders}
+            />
           </div>
         </Card>
         <Card className={"p-4 mt-3"}>
@@ -77,12 +79,13 @@ function Users() {
               />
             </form>
           </div>
-          <UserTable
+          <OrderTable
             handleShow={handleShow}
-            setUserId={setUserId}
-            users={currentUsers}
-            fetchUsers={fetchUsers}
+            setOrderId={setOrderId}
+            orders={currentOrders}
+            fetchOrders={fetchOrders}
           />
+
           <ReactPaginate
             className={classes.paginate}
             breakLabel="..."
@@ -99,4 +102,4 @@ function Users() {
   );
 }
 
-export default Users;
+export default Orders;

@@ -22,7 +22,7 @@ function PetsCatePage() {
   const currentPets = pets.slice(itemOffset, endOffset);
   const pageCount = Math.ceil(pets.length / pageSize);
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * 1) % pets.length;
+    const newOffset = (event.selected * pageSize) % pets.length;
     setItemOffset(newOffset);
   };
 
@@ -47,7 +47,7 @@ function PetsCatePage() {
               <Link to="/" className="breadcrumbs__item">
                 Home
               </Link>
-              <Link to="/order" className="breadcrumbs__item is-active">
+              <Link to="/pets" className="breadcrumbs__item is-active">
                 Pets
               </Link>
             </nav>
@@ -66,7 +66,7 @@ function PetsCatePage() {
                 onPageChange={handlePageClick}
                 pageRangeDisplayed={5}
                 pageCount={pageCount}
-                previousLabel="< previous"
+                previousLabel="< prev"
                 renderOnZeroPageCount={null}
               />
             </div>

@@ -14,4 +14,8 @@
 }
 .icon {
   font-size: 1.8rem;
+  cursor: pointer;
+}
+.icon:hover {
+  color: cadetblue;
 }

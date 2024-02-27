@@ -5,7 +5,7 @@ function ModalViewUser({ user, show, handleClose }) {
     <>
       <div>
         <Modal
-          size="lg"
+          size="md"
           show={show}
           onHide={handleClose}
           backdrop="static"
@@ -16,8 +16,8 @@ function ModalViewUser({ user, show, handleClose }) {
           </Modal.Header>
           <Modal.Body>
             <form className="row g-3">
-              <div className="col-md-6">
-                <label className="form-label">fullname</label>
+              <div className="col-md-12">
+                <label className="form-label">Fullname</label>
                 <input
                   className="form-control"
                   name="name"
@@ -27,16 +27,17 @@ function ModalViewUser({ user, show, handleClose }) {
               </div>
 
               <div className="col-md-6">
-                <label className="form-label">email</label>
+                <label className="form-label">Email</label>
                 <input
                   className="form-control"
                   name="email"
                   value={user?.email}
+                  disabled
                   //onChange={handleChange}
                 />
               </div>
               <div className="col-md-6">
-                <label className="form-label">phone</label>
+                <label className="form-label">Phone</label>
                 <input
                   className="form-control"
                   name="phone"
@@ -45,7 +46,7 @@ function ModalViewUser({ user, show, handleClose }) {
                 />
               </div>
               <div className="col-12">
-                <label className="form-label">address</label>
+                <label className="form-label">Address</label>
                 <textarea
                   name="desc"
                   className="form-control"

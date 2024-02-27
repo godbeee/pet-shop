@@ -154,7 +154,10 @@ function ModalUpdatePet({ show, handleClose, fetchPets, pet, setPet }) {
                     </>
                   )}
                   {!imageUpload && (
-                    <img src="https://placehold.co/207x138" alt=""></img>
+                    <img
+                      src="https://placehold.co/207x138?text=empty"
+                      alt=""
+                    ></img>
                   )}
                 </div>
               </div>
@@ -206,7 +209,7 @@ function ModalUpdatePet({ show, handleClose, fetchPets, pet, setPet }) {
                 </select>
               </div>
               <div className="col-md-6">
-                <label className="form-label">breed</label>
+                <label className="form-label">Breed</label>
                 <select
                   value={pet?.breed}
                   onChange={handleChange}
@@ -221,7 +224,7 @@ function ModalUpdatePet({ show, handleClose, fetchPets, pet, setPet }) {
                 </select>
               </div>
               <div className="col-md-4">
-                <label className="form-label">weight</label>
+                <label className="form-label">Weight</label>
                 <input
                   className="form-control"
                   name="weight"
@@ -230,7 +233,7 @@ function ModalUpdatePet({ show, handleClose, fetchPets, pet, setPet }) {
                 />
               </div>
               <div className="col-md-4">
-                <label className="form-label">age</label>
+                <label className="form-label">Age</label>
                 <input
                   type="number"
                   className="form-control"
@@ -240,7 +243,7 @@ function ModalUpdatePet({ show, handleClose, fetchPets, pet, setPet }) {
                 />
               </div>
               <div className="col-md-4">
-                <label className="form-label">price</label>
+                <label className="form-label">Price</label>
                 <input
                   type="number"
                   className="form-control"
@@ -250,8 +253,8 @@ function ModalUpdatePet({ show, handleClose, fetchPets, pet, setPet }) {
                 />
               </div>
               <div className="col-12">
-                <label className="form-label">description</label>
-                <input
+                <label className="form-label">Description</label>
+                <textarea
                   name="desc"
                   className="form-control"
                   placeholder="description"
@@ -260,7 +263,7 @@ function ModalUpdatePet({ show, handleClose, fetchPets, pet, setPet }) {
                 />
               </div>
               <div className="col-12 mt-3 d-flex justify-content-end">
-                <button className="btn btn-success">update pet</button>
+                <button className="btn btn-success">Update pet</button>
               </div>
             </form>
           </Modal.Body>

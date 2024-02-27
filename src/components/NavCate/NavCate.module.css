@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   gap: 2rem;
+  margin-bottom: 1rem;
 }
 .container a {
   text-decoration: none;
@@ -20,4 +21,17 @@
 .active {
   background-color: #2d9596 !important;
   color: #fff !important;
+}
+.btn:link,
+.btn:visited {
+  transition: all 0.2s;
+  position: relative;
+}
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }

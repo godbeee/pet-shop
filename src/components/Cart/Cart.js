@@ -3,7 +3,6 @@ import CartItem from "./CartItem/CartItem";
 
 function Cart() {
   const cartItems = useSelector((state) => state.cart.cartItems);
-  console.log(cartItems);
   return (
     <>
       <div className="table-responsive">

@@ -27,10 +27,10 @@ function CheckoutPage() {
       </div>
       <Container className="mb-5">
         <Row>
-          <div className="col-md-6">
+          <div className={`col-md-6 ${classes.item1}`}>
             <FormOrder />
           </div>
-          <div className="col-md-6">
+          <div className={`col-md-6 ${classes.item2}`}>
             <SummaryOrder />
           </div>
         </Row>

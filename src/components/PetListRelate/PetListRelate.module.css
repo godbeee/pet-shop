@@ -1,12 +1,36 @@
 .list {
   display: grid;
   grid-template-columns: 1fr;
+  margin-bottom: 1rem;
 }
 
+.list:hover > div {
+  filter: blur(3px);
+  opacity: 0.5;
+  transform: scale(0.98);
+  box-shadow: none;
+}
+.list:hover > div:hover {
+  transform: scale(1);
+  filter: blur(0px);
+  opacity: 1;
+  box-shadow: 0 8px 20px 0px rgba(0, 0, 0, 0.125);
+}
+.list {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+}
+@media (min-width: 768px) {
+  .list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
 @media screen and (min-width: 992px) {
   .list {
     display: grid;
-    grid-template-columns: repeat(4, minmax(320px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 24px;
   }
 }

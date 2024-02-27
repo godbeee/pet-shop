@@ -15,8 +15,6 @@ function OrderDetailPage() {
   const orderId = params.id;
   const [order, setOrder] = useState(null);
 
-  console.log(order);
-
   useEffect(() => {
     async function fetchOrder() {
       const res = await fetch(`${baseURL}/orders/${orderId}`);
@@ -50,7 +48,7 @@ function OrderDetailPage() {
           <div className="row">
             <div className="col-md-6">
               <Card className={"p-3"}>
-                <div className="row my-2">
+                <div className="row">
                   <div className="col-12">
                     <div className="d-flex align-items-center">
                       <FaRegUser style={{ marginRight: "4px" }} />
@@ -58,14 +56,14 @@ function OrderDetailPage() {
                     </div>
                   </div>
                 </div>
-                <div className="row my-2">
-                  <div className="col-md-6">
+                <div className="row py-2">
+                  <div className="col-md-12 col-lg-6">
                     <div className="d-flex align-items-center">
                       <MdOutlinePhoneIphone style={{ marginRight: "4px" }} />
                       <strong>Phone: {order?.phone}</strong>
                     </div>
                   </div>
-                  <div className="col-md-6">
+                  <div className="col-md-12 col-lg-6">
                     <div className="d-flex align-items-center">
                       <MdOutlineEmail style={{ marginRight: "4px" }} />
                       <strong>Email: {order?.email}</strong>

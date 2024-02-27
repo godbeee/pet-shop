@@ -27,22 +27,38 @@ function Header() {
   }
   return (
     <>
-      <Navbar expand="lg" className="bg-body-tertiary fixed-top">
+      <Navbar expand="md" className="bg-body-tertiary fixed-top">
         <Container>
           <Link to={"/"} className={classes.branch}>
             <img height={40} src={logo} alt="logo" />
           </Link>
+          <NavLink
+            className={`${classes.test} d-flex align-items-center text-decoration-none text-black fs-5`}
+            to="/cart"
+          >
+            <FaShoppingCart className="mx-2" />
+            <span className="position-relative">
+              Cart
+              <span
+                style={{
+                  position: "absolute",
+                  top: "-4px",
+                  right: "-13px",
+                  color: "#d04848",
+                }}
+              >
+                {cart.length}
+              </span>
+            </span>
+          </NavLink>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <NavLink className="nav-link" to="/admin">
-                admin
+              <NavLink className="nav-link" to="/admin/dashboard">
+                Admin
               </NavLink>
               <NavLink className="nav-link spec" to="/pets">
-                pets
-              </NavLink>
-              <NavLink className="nav-link" to="/blog">
-                blog
+                Pets
               </NavLink>
             </Nav>
             <Nav>
@@ -56,13 +72,13 @@ function Header() {
                     onClick={() => handleNavigate("/login")}
                     className={classes.btn}
                   >
-                    login
+                    Login
                   </button>
                   <button
                     onClick={() => handleNavigate("/register")}
                     className={classes.btn}
                   >
-                    register
+                    Register
                   </button>
                 </>
               )}
