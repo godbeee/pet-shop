@@ -6,7 +6,7 @@
   justify-content: space-between;
   flex-wrap: wrap;
 }
-.form input {
+/* .form input {
   border: none;
   outline: 1px solid gainsboro;
   padding: 0.4rem 1rem;
@@ -17,7 +17,7 @@
   padding: 0.4rem;
   border: none;
   outline: 1px solid gainsboro;
-}
+} */
 @media (max-width: 576px) {
   .form input {
     margin-bottom: 1rem;
