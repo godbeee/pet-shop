@@ -85,11 +85,11 @@ function Header() {
               {state.isAuth && (
                 <NavDropdown title={state.fullname} id="basic-nav-dropdown">
                   <Link className="dropdown-item" to="/order">
-                    <FaFile /> orders
+                    <FaFile /> Orders
                   </Link>
                   <NavDropdown.Divider />
                   <Link onClick={handleLogout} className="dropdown-item" to="/">
-                    <FaArrowRight /> logout
+                    <FaArrowRight /> Logout
                   </Link>
                 </NavDropdown>
               )}

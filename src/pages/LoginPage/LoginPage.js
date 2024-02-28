@@ -25,7 +25,6 @@ function LoginPage() {
       body: JSON.stringify(obj),
     });
     const data = await res.json();
-    console.log(data);
     if (data.errors.length) {
       notify(data.errors[0].msg, true);
       return;

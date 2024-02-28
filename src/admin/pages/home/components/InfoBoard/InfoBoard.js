@@ -45,7 +45,8 @@ function InfoBoard() {
         <div className={classes.item}>
           <div>
             <h3 style={{ fontSize: "2rem" }}>
-              {new Intl.NumberFormat("it-IT", config).format(summary?.total)}
+              {new Intl.NumberFormat("it-IT", config).format(summary?.total) ||
+                "0 VND"}
             </h3>
             <p>Earning</p>
           </div>

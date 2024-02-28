@@ -47,3 +47,8 @@
   border: none;
   outline: none;
 }
+@media (max-width: 576px) {
+  .form {
+    margin: 6.5rem auto;
+  }
+}

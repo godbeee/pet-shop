@@ -89,7 +89,7 @@ function OrderPage() {
                     </td>
                     <td className="border-0 align-middle text-center">
                       <Link to={`/order/${order._id}`} className={classes.view}>
-                        View Detail
+                        Detail
                       </Link>
                     </td>
                   </tr>

@@ -110,6 +110,7 @@ function OrderDetailPage() {
                                 alt="empty"
                                 width="70"
                                 className="img-fluid rounded shadow-sm"
+                                style={{ marginRight: "6px" }}
                               />
                             )}
                             {ci.petId?.avatar && (
@@ -118,9 +119,10 @@ function OrderDetailPage() {
                                 alt={ci?.petId?.name}
                                 width="70"
                                 className="img-fluid rounded shadow-sm"
+                                style={{ marginRight: "6px" }}
                               />
                             )}
-                            <div className="mx-3 d-inline-block align-middle">
+                            <div className="d-inline-block align-middle">
                               <h5 className="mb-0">
                                 <span className="text-dark d-inline-block align-middle">
                                   {ci.petId?.name}
